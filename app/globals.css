@@ -1,0 +1,874 @@
+/* Add font-display property to ensure text remains visible during font loading */
+@font-face {
+  font-family: "Inter var";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Enhanced light theme with custom colors */
+    --background: 0 0% 98%; /* Almost white background */
+    --foreground: 345 9% 13%; /* #231f20 - Dark gray for text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 345 9% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 345 9% 13%;
+
+    --primary: 24 97% 57%; /* #fc7428 - Vibrant orange primary */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 267 29% 51%; /* #7b5ea7 - Medium purple secondary */
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 348 85% 75%; /* #f38ba3 - Soft pink accent */
+    --accent-foreground: 345 9% 13%;
+
+    --tertiary: 351 84% 53%; /* #ed203d - Bright red tertiary */
+    --tertiary-foreground: 0 0% 98%;
+
+    --highlight: 267 29% 51%; /* Using the purple as highlight */
+
+    --muted: 0 0% 93%;
+    --muted-foreground: 345 9% 40%;
+
+    --destructive: 351 84% 53%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 345 9% 85%;
+    --input: 345 9% 85%;
+    --ring: 24 97% 57%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Keep existing dark mode colors */
+    --background: 0 0% 3%; /* Darker background for more contrast */
+    --foreground: 60 54% 92%; /* #f9f4da in HSL */
+    --card: 0 0% 6%; /* Slightly darker card background */
+    --card-foreground: 60 54% 92%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 60 54% 92%;
+    --primary: 47 95% 60%; /* Brighter primary color */
+    --primary-foreground: 0 0% 9%;
+    --secondary: 270 70% 65%; /* More vibrant secondary */
+    --secondary-foreground: 60 54% 92%;
+    --accent: 174 80% 48%; /* More vibrant accent */
+    --accent-foreground: 0 0% 9%;
+    --tertiary: 199 95% 50%; /* More vibrant tertiary */
+    --tertiary-foreground: 0 0% 9%;
+    --highlight: 340 85% 78%; /* Brighter highlight */
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 54% 92%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Default cursor is now restored */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em; /* Subtle letter spacing adjustment for body text */
+  }
+
+  /* Enhanced typography for headings with custom weights */
+  h1 {
+    @apply font-montserrat font-black tracking-tight; /* 900 weight */
+    letter-spacing: -0.03em; /* Tighter tracking for large headings */
+  }
+
+  h2 {
+    @apply font-montserrat font-extrabold tracking-tight; /* 800 weight */
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    @apply font-montserrat font-bold tracking-tight; /* 700 weight */
+    letter-spacing: -0.01em;
+  }
+
+  h4 {
+    @apply font-montserrat font-semibold tracking-tight; /* 600 weight */
+  }
+
+  h5,
+  h6 {
+    @apply font-montserrat font-medium; /* 500 weight */
+  }
+
+  p {
+    @apply font-normal leading-relaxed; /* 400 weight */
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1; /* Enable kerning and ligatures */
+  }
+
+  strong,
+  b {
+    @apply font-semibold; /* 600 weight instead of bold for more refined look */
+  }
+}
+
+/* Enhanced text selection colors */
+::selection {
+  @apply bg-primary text-primary-foreground;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Subtle text shadow for selected text */
+}
+
+::-moz-selection {
+  @apply bg-primary text-primary-foreground;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100%;
+  position: relative;
+}
+
+/* Add these custom styles for the light theme to enhance the visual appearance */
+
+/* Light mode specific background texture */
+.light body {
+  background-image: radial-gradient(
+    rgba(252, 116, 40, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 30px 30px;
+  background-position: 0 0;
+}
+
+/* Dark mode specific background texture */
+.dark body {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 30px 30px;
+  background-position: 0 0;
+}
+
+/* Consistent container width and padding */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Enhanced card styling */
+.card {
+  @apply rounded-lg overflow-hidden shadow-lg border border-border/10 backdrop-blur-sm;
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.15),
+    0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode card styling */
+.dark .card {
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card:hover {
+  box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Consistent section spacing - FURTHER REDUCED */
+section {
+  @apply py-6 md:py-10;
+}
+
+/* Reduce space between sections */
+.section-wrapper {
+  margin-bottom: -2rem;
+}
+
+/* Highlight text styling inspired by ui.dev */
+.highlight {
+  @apply text-highlight font-semibold;
+}
+
+/* Light mode highlight */
+.light .highlight {
+  text-shadow: 0 0 10px rgba(var(--highlight), 0.2);
+}
+
+/* Dark mode highlight */
+.dark .highlight {
+  text-shadow: 0 0 10px rgba(var(--highlight), 0.3);
+}
+
+.card-stack {
+  position: relative;
+  perspective: 1000px;
+}
+
+.card-stack-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  transition: all 0.5s ease-out;
+  overflow: hidden;
+}
+
+.card-stack-item:nth-child(1) {
+  z-index: 3;
+  transform: translateZ(0) translateX(0) translateY(0);
+}
+
+.card-stack-item:nth-child(2) {
+  z-index: 2;
+  transform: translateZ(-10px) translateX(20px) translateY(20px);
+}
+
+.card-stack-item:nth-child(3) {
+  z-index: 1;
+  transform: translateZ(-20px) translateX(40px) translateY(40px);
+}
+
+/* Enhanced text gradients */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Light mode text gradient shadow */
+.light .text-gradient {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+/* Dark mode text gradient shadow */
+.dark .text-gradient {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.primary-gradient {
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    hsl(var(--secondary))
+  );
+}
+
+.secondary-gradient {
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--secondary)),
+    hsl(var(--accent))
+  );
+}
+
+.accent-gradient {
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--accent)),
+    hsl(var(--tertiary))
+  );
+}
+
+.hero-gradient {
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    hsl(var(--secondary)),
+    hsl(var(--accent)),
+    hsl(var(--tertiary))
+  );
+}
+
+/* Enhanced card highlight effect */
+.card-highlight {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+/* Light mode card highlight */
+.light .card-highlight {
+  box-shadow: 0 10px 30px -15px rgba(252, 116, 40, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(252, 116, 40, 0.1);
+}
+
+.light .card-highlight:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px -15px rgba(252, 116, 40, 0.25),
+    0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode card highlight */
+.dark .card-highlight {
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(249, 244, 218, 0.05);
+}
+
+.dark .card-highlight:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-highlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+/* Light mode card highlight effect */
+.light .card-highlight::before {
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(252, 116, 40, 0.08) 50%,
+    transparent 75%
+  );
+}
+
+/* Dark mode card highlight effect */
+.dark .card-highlight::before {
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 75%
+  );
+}
+
+.card-highlight:hover::before {
+  transform: translateX(100%);
+}
+
+/* Enhanced glow effect */
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    hsl(var(--primary)),
+    hsl(var(--secondary)),
+    hsl(var(--accent)),
+    hsl(var(--tertiary))
+  );
+  border-radius: calc(var(--radius) + 2px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.glow-effect:hover::after {
+  opacity: 0.7;
+}
+
+.company-logo {
+  filter: grayscale(100%) brightness(0.8);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.company-logo:hover {
+  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+}
+
+/* Optimize animations for better performance */
+@media (prefers-reduced-motion: no-preference) {
+  .optimize-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+}
+
+/* Fix for scroll animations */
+.scroll-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Prevent layout shifts during scrolling */
+.section-wrapper {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Enhanced typography classes with custom weights */
+@layer components {
+  /* Heading styles with custom weights */
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-montserrat font-black tracking-tight; /* 900 weight */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
+    letter-spacing: -0.03em; /* Tighter tracking for large headings */
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-montserrat font-extrabold tracking-tight; /* 800 weight */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-montserrat font-bold tracking-tight; /* 700 weight */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.01em;
+  }
+
+  .heading-sm {
+    @apply text-xl md:text-2xl font-montserrat font-semibold tracking-tight; /* 600 weight */
+    letter-spacing: -0.01em;
+  }
+
+  /* Body text styles with custom weights */
+  .body-lg {
+    @apply text-lg font-sans font-normal leading-relaxed; /* 400 weight */
+    letter-spacing: -0.01em; /* Slight letter spacing adjustment for readability */
+  }
+
+  .body-md {
+    @apply text-base font-sans font-normal leading-relaxed; /* 400 weight */
+    letter-spacing: -0.01em;
+  }
+
+  .body-sm {
+    @apply text-sm font-sans font-normal leading-relaxed; /* 400 weight */
+  }
+
+  /* Caption and utility text styles */
+  .caption {
+    @apply text-sm font-sans font-light text-muted-foreground; /* 300 weight */
+  }
+
+  .overline {
+    @apply text-xs font-sans font-medium uppercase tracking-wider; /* 500 weight */
+    letter-spacing: 0.05em;
+  }
+
+  .subtitle {
+    @apply text-lg md:text-xl font-sans font-medium; /* 500 weight */
+    letter-spacing: -0.01em;
+  }
+
+  .quote {
+    @apply text-xl md:text-2xl font-serif font-normal italic; /* 400 weight */
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Mobile optimizations */
+@layer utilities {
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  .mobile-text-base {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-text-lg {
+    @apply text-base sm:text-lg;
+  }
+
+  .mobile-text-xl {
+    @apply text-lg sm:text-xl;
+  }
+
+  .mobile-padding {
+    @apply p-4 sm:p-6;
+  }
+
+  .mobile-gap {
+    @apply gap-3 sm:gap-4;
+  }
+
+  /* Enhanced shadow glow */
+  .shadow-glow {
+    box-shadow: 0 0 15px 5px rgba(var(--primary), 0.3);
+  }
+
+  /* Text shadow utilities */
+  .text-shadow-sm {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Font weight utilities */
+  .font-thin {
+    font-weight: 100;
+  }
+
+  .font-extralight {
+    font-weight: 200;
+  }
+
+  .font-light {
+    font-weight: 300;
+  }
+
+  .font-normal {
+    font-weight: 400;
+  }
+
+  .font-medium {
+    font-weight: 500;
+  }
+
+  .font-semibold {
+    font-weight: 600;
+  }
+
+  .font-bold {
+    font-weight: 700;
+  }
+
+  .font-extrabold {
+    font-weight: 800;
+  }
+
+  .font-black {
+    font-weight: 900;
+  }
+
+  /* Letter spacing utilities */
+  .tracking-tighter {
+    letter-spacing: -0.05em;
+  }
+
+  .tracking-tight {
+    letter-spacing: -0.025em;
+  }
+
+  .tracking-normal {
+    letter-spacing: 0;
+  }
+
+  .tracking-wide {
+    letter-spacing: 0.025em;
+  }
+
+  .tracking-wider {
+    letter-spacing: 0.05em;
+  }
+
+  .tracking-widest {
+    letter-spacing: 0.1em;
+  }
+
+  /* Backdrop blur utilities */
+  .backdrop-blur-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(249, 244, 218, 0.1);
+  }
+}
+
+/* Improve mobile scrolling */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  /* Reduce animation complexity on mobile */
+  .optimize-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Improve touch targets */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  .heading-xl {
+    @apply text-3xl font-black;
+    letter-spacing: -0.02em;
+  }
+
+  .heading-lg {
+    @apply text-2xl font-extrabold;
+    letter-spacing: -0.015em;
+  }
+
+  .heading-md {
+    @apply text-xl font-bold;
+    letter-spacing: -0.01em;
+  }
+
+  .heading-sm {
+    @apply text-lg font-semibold;
+  }
+
+  .body-lg {
+    @apply text-base font-normal;
+  }
+
+  .body-md {
+    @apply text-sm font-normal;
+  }
+
+  .body-sm {
+    @apply text-xs font-normal;
+  }
+}
+
+/* Content visibility optimization */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: auto;
+}
+
+/* Reduce layout shifts */
+.prevent-layout-shift {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Glass card styles for light and dark modes */
+.glass-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Light mode glass card */
+.light .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(123, 94, 167, 0.1);
+  box-shadow: 0 10px 30px rgba(252, 116, 40, 0.08);
+}
+
+/* Dark mode glass card */
+.dark .glass-card {
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(249, 244, 218, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Text glow effect for light and dark modes */
+.light .text-glow {
+  text-shadow: 0 0 10px rgba(252, 116, 40, 0.3);
+}
+
+.dark .text-glow {
+  text-shadow: 0 0 10px rgba(var(--primary), 0.5);
+}
+
+/* Border glow effect for light and dark modes */
+.light .border-glow {
+  box-shadow: 0 0 5px rgba(252, 116, 40, 0.3);
+}
+
+.dark .border-glow {
+  box-shadow: 0 0 5px rgba(var(--primary), 0.5);
+}
+
+.hd-image {
+  filter: contrast(1.05) saturate(1.1);
+}
+
+/* Section divider for light and dark modes */
+.light .section-divider {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
+}
+
+.dark .section-divider {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(249, 244, 218, 0.1),
+    transparent
+  );
+}
+
+/* Enhance scrollbar for better HD look */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Light mode scrollbar */
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(252, 116, 40, 0.3);
+  border-radius: 5px;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(var(--primary), 0.3);
+  border-radius: 5px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(252, 116, 40, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--primary), 0.5);
+}
+
+/* Typography-specific enhancements */
+.font-feature-settings {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0,
+    "onum" 0, "lnum" 0, "dlig" 0;
+}
+
+.font-feature-settings-nums {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 0, "tnum" 1,
+    "onum" 0, "lnum" 1;
+}
+
+.font-feature-settings-dlig {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0,
+    "onum" 0, "lnum" 0, "dlig" 1;
+}
+
+/* Line height utilities */
+.leading-tighter {
+  line-height: 1.1;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.leading-snug {
+  line-height: 1.375;
+}
+
+.leading-normal {
+  line-height: 1.5;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+.leading-loose {
+  line-height: 2;
+}
+
+/* Text balance for better typography */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
