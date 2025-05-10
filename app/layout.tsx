@@ -35,7 +35,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Vedang Prajapati | Frontend Developer",
+  title: "Portfolio | Vedang Prajapati",
   description:
     "Professional Frontend Developer with 3.5+ years of experience in building high-performance web applications",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
@@ -58,6 +58,7 @@ export default function RootLayout({
 
         {/* Font display optimization */}
         <meta name="font-display" content="optional" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={`${inter.variable} ${poppins.variable} ${montserrat.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>

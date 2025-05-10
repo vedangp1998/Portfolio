@@ -64,7 +64,7 @@ export default function Hero() {
               >
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-lg w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 font-semibold tracking-tight"
+                  className="bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground sm:text-lg w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 font-semibold tracking-tight"
                   onClick={() => scrollToSection("projects")}
                 >
                   View My Work
@@ -76,7 +76,7 @@ export default function Hero() {
                   size="lg"
                   className="border-primary/50 hover:bg-primary/10 hover:text-primary hover:border-primary text-base sm:text-lg w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 backdrop-blur-sm font-medium tracking-tight"
                 >
-                  Contact Me
+                  Let's Connect
                 </ContactButton>
               </motion.div>
             </div>

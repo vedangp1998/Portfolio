@@ -6,6 +6,7 @@ import MobileNav from "@/components/mobile-nav"
 import { motion } from "framer-motion"
 import ContactButton from "@/components/contact-button"
 import ThemeToggle from "@/components/theme-toogle"
+import Link from "next/link"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -101,18 +102,22 @@ export default function Header() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4",
-        isScrolled ? "bg-background/90 backdrop-blur-xl shadow-md border-b border-primary/10" : "bg-transparent",
+        isScrolled ? "bg-background/90 backdrop-blur-xl shadow-md border-b border-border/10" : "bg-transparent",
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-xl sm:text-2xl font-bold text-gradient primary-gradient font-heading"
-        >
-          VP
-        </motion.div>
+        <Link href="/">
+          <motion.div
+            aria-label="Go to home"
+            title="Back to home"
+            className="text-xl sm:text-2xl font-bold text-gradient primary-gradient font-heading cursor-pointer transition-transform hover:scale-105"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Portfolio
+          </motion.div>
+        </Link>
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link, index) => (
             <motion.button
@@ -142,7 +147,8 @@ export default function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            <ContactButton className="hidden md:flex bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20" />
+            <ContactButton className="hidden md:flex bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 tracking-tight"
+            />
           </motion.div>
 
           {/* Theme Toggle */}

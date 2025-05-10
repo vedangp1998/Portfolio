@@ -8,6 +8,7 @@ import { StaggerContainer, StaggerItem, ScaleIn } from "@/components/scroll-anim
 import SectionHeading from "@/components/section-heading"
 import { lazy, Suspense } from "react"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 import Richie1 from "../public/Richie1.png"
 import Stalwart1 from "../public/StalwartPlugnplay1.png"
@@ -23,7 +24,52 @@ const imagePaths = {
   // first500days: First500Days1,
   waitlist: Waitlist1,
 }
+
 const ProjectDetails = lazy(() => import("@/components/project-details"))
+
+// Define a sequence of colors to use for the cards
+const colorSequence = [
+  {
+    name: "primary",
+    class: "bg-primary",
+    textClass: "text-primary",
+    badgeClass: "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 hover:border-primary/40",
+    buttonClass:
+      "border-primary/30 hover:bg-primary/20 hover:text-primary hover:border-primary/70 active:bg-primary/30 active:border-primary",
+  },
+  {
+    name: "secondary",
+    class: "bg-secondary",
+    textClass: "text-secondary",
+    badgeClass: "bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 hover:border-secondary/40",
+    buttonClass:
+      "border-secondary/30 hover:bg-secondary/20 hover:text-secondary hover:border-secondary/70 active:bg-secondary/30 active:border-secondary",
+  },
+  {
+    name: "accent",
+    class: "bg-accent",
+    textClass: "text-accent",
+    badgeClass: "bg-accent/10 text-accent border-accent/20 hover:bg-accent/20 hover:border-accent/40",
+    buttonClass:
+      "border-accent/30 hover:bg-accent/20 hover:text-accent hover:border-accent/70 active:bg-accent/30 active:border-accent",
+  },
+  {
+    name: "tertiary",
+    class: "bg-tertiary",
+    textClass: "text-tertiary",
+    badgeClass: "bg-tertiary/10 text-tertiary border-tertiary/20 hover:bg-tertiary/20 hover:border-tertiary/40",
+    buttonClass:
+      "border-tertiary/30 hover:bg-tertiary/20 hover:text-tertiary hover:border-tertiary/70 active:bg-tertiary/30 active:border-tertiary",
+  },
+  {
+    name: "highlight",
+    class: "bg-highlight",
+    textClass: "text-highlight",
+    badgeClass: "bg-highlight/10 text-highlight border-highlight/20 hover:bg-highlight/20 hover:border-highlight/40",
+    buttonClass:
+      "border-highlight/30 hover:bg-highlight/20 hover:text-highlight hover:border-highlight/70 active:bg-highlight/30 active:border-highlight",
+  },
+]
 
 export default function Projects() {
   const projects = [
@@ -40,7 +86,6 @@ export default function Projects() {
           height={400}
         />
       ),
-      color: "bg-primary",
       technologies: ["Next.js", "Redux", "Tailwind CSS", "REST API"],
       responsibilities: [
         "Developed and maintained a responsive web application offering embedded lending solutions for B2B platforms.",
@@ -64,7 +109,6 @@ export default function Projects() {
           height={400}
         />
       ),
-      color: "bg-primary",
       technologies: ["React.js", "Redux", "Tailwind CSS", "REST API"],
       responsibilities: [
         "Developed a responsive and scalable frontend architecture for the corporate website.",
@@ -88,7 +132,6 @@ export default function Projects() {
           height={400}
         />
       ),
-      color: "bg-primary",
       technologies: ["React.js", "TypeScript", "Redux", "Material UI", "REST API"],
       responsibilities: [
         "Developed a responsive web application with three core services.",
@@ -112,7 +155,6 @@ export default function Projects() {
           height={400}
         />
       ),
-      color: "bg-secondary",
       technologies: ["React.js", "Redux", "Material UI", "REST API"],
       responsibilities: [
         "Fixed bugs and enhanced the UI in collaboration with the design team to ensure a polished and user-friendly experience.",
@@ -127,7 +169,6 @@ export default function Projects() {
       description:
         "This web app allows users to create new projects, manage them by adding tasks, and oversee project-related activities efficiently.",
       icon: <LayoutDashboard className="h-16 w-16 text-accent/70 text-glow" strokeWidth={1.5} />,
-      color: "bg-accent",
       technologies: ["React.js", "Tailwind CSS", "JavaScript"],
       responsibilities: [
         "Designed and developed a user-friendly interface for project management.",
@@ -142,7 +183,6 @@ export default function Projects() {
       description:
         "Developing a user-centric food ordering app to streamline the process of browsing, selecting, and ordering meals.",
       icon: <ShoppingCart className="h-16 w-16 text-tertiary/70 text-glow" strokeWidth={1.5} />,
-      color: "bg-tertiary",
       technologies: ["React.js", "Tailwind CSS", "JavaScript"],
       responsibilities: [
         "Designed an intuitive user interface for browsing food items.",
@@ -154,6 +194,19 @@ export default function Projects() {
     },
   ]
 
+  // Assign colors to projects in sequence
+  const projectsWithColors = projects.map((project, index) => {
+    const colorIndex = index % colorSequence.length
+    return {
+      ...project,
+      color: colorSequence[colorIndex].class,
+      textColor: colorSequence[colorIndex].textClass,
+      colorName: colorSequence[colorIndex].name,
+      badgeClass: colorSequence[colorIndex].badgeClass,
+      buttonClass: colorSequence[colorIndex].buttonClass,
+    }
+  })
+
   return (
     <section id="projects" className="py-8">
       <div className="container mx-auto px-4">
@@ -161,7 +214,7 @@ export default function Projects() {
 
         <div className="max-w-7xl mx-auto">
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
+            {projectsWithColors.map((project, index) => (
               <StaggerItem key={index}>
                 <ScaleIn>
                   <Card className="h-full flex flex-col overflow-hidden border-0 shadow-xl glass-card">
@@ -177,8 +230,11 @@ export default function Projects() {
                         {project.technologies.map((tech, idx) => (
                           <Badge
                             key={idx}
-                            variant="secondary"
-                            className="bg-secondary/10 text-secondary text-xs sm:text-sm py-1 border border-secondary/20 font-medium tracking-tight transition-all duration-200 hover:bg-secondary/20 hover:border-secondary/40 hover:shadow-[0_0_8px_rgba(var(--secondary),0.3)] hover:scale-105 hover:-translate-y-0.5"
+                            variant="outline"
+                            className={cn(
+                              "text-xs sm:text-sm py-1 font-medium tracking-tight transition-all duration-200 hover:scale-105 hover:-translate-y-0.5 hover:shadow-[0_0_8px_rgba(var(--ring),0.3)]",
+                              project.badgeClass,
+                            )}
                           >
                             {tech}
                           </Badge>
@@ -198,7 +254,7 @@ export default function Projects() {
                           </div>
                         }
                       >
-                        <ProjectDetails responsibilities={project.responsibilities} />
+                        <ProjectDetails responsibilities={project.responsibilities} colorClass={project.textColor} />
                       </Suspense>
                     </CardContent>
                     <CardFooter className="flex gap-3 p-4 sm:p-6 pt-0">
@@ -207,7 +263,10 @@ export default function Projects() {
                           variant="outline"
                           size="sm"
                           asChild
-                          className="border-primary/30 text-xs sm:text-sm py-2 h-auto hover:bg-primary/20 hover:text-primary hover:border-primary/70 font-medium tracking-tight transition-all duration-200 active:scale-95 active:bg-primary/30 active:border-primary"
+                          className={cn(
+                            "text-xs sm:text-sm py-2 h-auto font-medium tracking-tight transition-all duration-200 active:scale-95",
+                            project.buttonClass,
+                          )}
                         >
                           <a
                             href={project.liveLink}
@@ -224,7 +283,10 @@ export default function Projects() {
                           variant="outline"
                           size="sm"
                           asChild
-                          className="border-primary/30 text-xs sm:text-sm py-2 h-auto hover:bg-primary/20 hover:text-primary hover:border-primary/70 font-medium tracking-tight transition-all duration-200 active:scale-95 active:bg-primary/30 active:border-primary"
+                          className={cn(
+                            "text-xs sm:text-sm py-2 h-auto font-medium tracking-tight transition-all duration-200 active:scale-95",
+                            project.buttonClass,
+                          )}
                         >
                           <a
                             href={project.githubLink}

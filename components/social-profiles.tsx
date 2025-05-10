@@ -5,8 +5,11 @@ import { Github, Linkedin, ExternalLink } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import SectionHeading from "@/components/section-heading"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/scroll-animations"
+import { useTheme } from "next-themes"
 
 export default function SocialProfiles() {
+    const { theme } = useTheme()
+
     const socialProfiles = [
         {
             name: "LinkedIn",
@@ -19,8 +22,8 @@ export default function SocialProfiles() {
         {
             name: "GitHub",
             icon: Github,
-            color: "#f9f4da",
-            bgColor: "rgba(249, 244, 218, 0.1)",
+            color: theme === "light" ? "#231f20" : "#f9f4da",
+            bgColor: theme === "light" ? "rgba(35, 31, 32, 0.1)" : "rgba(249, 244, 218, 0.1)",
             description: "Explore my code repositories and open-source contributions",
             link: "https://github.com/vedangp1998",
         },
