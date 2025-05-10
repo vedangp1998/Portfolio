@@ -32,7 +32,7 @@ export default function Hero() {
         >
           <div>
             <TextReveal className="inline-block">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-2 sm:mb-4 font-montserrat text-foreground text-shadow-md tracking-tighter">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-black mb-2 sm:mb-4 font-montserrat text-foreground text-shadow-md tracking-tighter">
                 Hi, I am <TypewriterText text="Vedang" delay={0.5} speed={0.08} />
               </h1>
             </TextReveal>
