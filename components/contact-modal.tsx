@@ -16,6 +16,8 @@ interface ContactModalProps {
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [activeTab, setActiveTab] = useState<"connect">("connect")
   const emailAddress = "vedang.prajapati18@gmail.com"
+  const phoneNumber = "+91 8962483102"
+  const phoneNumberForHref = "+918962483102" // Removed spaces for href
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -123,7 +125,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           </div>
 
           <div className="mb-4 sm:mb-6">
-            <div
+            <a
+              href={`tel:${phoneNumberForHref}`}
               className={`group block ${isLightTheme ? "bg-amber-50 hover:bg-amber-100" : "bg-[#291f0f] hover:bg-[#332710]"
                 } p-4 sm:p-6 rounded-lg transition-colors`}
             >
@@ -136,12 +139,12 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </h3>
               </div>
               <p className={`text-sm sm:text-base ${isLightTheme ? "text-gray-800" : "text-white"} font-medium mb-1`}>
-                +91 8962483102
+                {phoneNumber}
               </p>
               <p className={`text-xs sm:text-sm ${isLightTheme ? "text-gray-600" : "text-white/60"}`}>
                 Available Mon-Fri, 9am-6pm IST
               </p>
-            </div>
+            </a>
           </div>
         </div>
 
