@@ -14,6 +14,8 @@ import Richie1 from "../public/Richie1.png"
 import Stalwart1 from "../public/StalwartPlugnplay1.png"
 import Effibuild1 from "../public/Effibuild2.png"
 // import First500Days1 from "../public/First500Days1.png";
+import ProWrestling1 from "../public/ProWrestling1.png"
+import ProjectManagement1 from "../public/ProjectManagement1.png"
 import Waitlist1 from "../public/Waitlist1.png"
 
 // Define image paths as strings
@@ -22,6 +24,8 @@ const imagePaths = {
   stalwart: Stalwart1,
   effibuild: Effibuild1,
   // first500days: First500Days1,
+  pwl: ProWrestling1,
+  ProjectManagement: ProjectManagement1,
   waitlist: Waitlist1,
 }
 
@@ -74,29 +78,6 @@ const colorSequence = [
 export default function Projects() {
   const projects = [
     {
-      title: "Richie AI",
-      description:
-        "A comprehensive embedded lending platform enabling SaaS platforms, marketplaces, and payment processors to offer tailored business loan solutions through a unified infrastructure.",
-      icon: (
-        <Image
-          src={imagePaths.richie || "/placeholder.svg"}
-          alt="Richie AI Platform"
-          className="h-full w-full drop-shadow-md"
-          width={600}
-          height={400}
-        />
-      ),
-      technologies: ["Next.js", "Redux", "Tailwind CSS", "REST API"],
-      responsibilities: [
-        "Developed and maintained a responsive web application offering embedded lending solutions for B2B platforms.",
-        "Built dynamic, reusable UI components with Tailwind CSS and integrated smooth animations for an engaging user experience.",
-        "Improved performance and reduced initial load time through optimized asset loading and code splitting.",
-        "Collaborated closely with designers and backend developers to align UI implementation with product goals.",
-      ],
-      liveLink: "https://richie.ai/",
-      githubLink: null,
-    },
-    {
       title: "Stalwart Plug N Play",
       description:
         "India's first 'Plug-N-Play' sales implementation and route-to-market organization, partnering with early and growth-stage FMCG brands to provide comprehensive retail sales and market solutions across 100+ locations.",
@@ -104,9 +85,8 @@ export default function Projects() {
         <Image
           src={imagePaths.stalwart || "/placeholder.svg"}
           alt="Stalwart Plug N Play"
-          className="h-full w-full drop-shadow-md"
-          width={600}
-          height={400}
+          className="h-[full] w-[500px] drop-shadow-md"
+
         />
       ),
       technologies: ["React.js", "Redux", "Tailwind CSS", "REST API"],
@@ -120,6 +100,47 @@ export default function Projects() {
       githubLink: null,
     },
     {
+      title: "Richie AI",
+      description:
+        "Richie AI offers an embedded lending infrastructure that enables SaaS platforms, marketplaces, and payment processors to provide tailored business loan solutions through a unified, customizable system.",
+      icon: (
+        <Image
+          src={imagePaths.richie || "/placeholder.svg"}
+          alt="Richie AI Platform"
+          className="h-full w-[500px] drop-shadow-md"
+        />
+      ),
+      technologies: ["React.js", "Redux", "Tailwind CSS", "REST API"],
+      responsibilities: [
+        "Developed and maintained a responsive web application offering embedded lending solutions for B2B platforms.",
+        "Built dynamic, reusable UI components with Tailwind CSS and integrated smooth animations for an engaging user experience.",
+        "Improved performance and reduced initial load time through optimized asset loading and code splitting.",
+        "Collaborated closely with designers and backend developers to align UI implementation with product goals.",
+      ],
+      liveLink: "https://richie-ai.com/",
+      githubLink: null,
+    },
+    {
+      title: "Waitlist.Me",
+      description:
+        "A web application designed to manage guest reservations and waitlists for restaurants, cafes, and other businesses, streamlining the customer experience and operational efficiency.",
+      icon: (
+        <Image
+          src={imagePaths.waitlist || "/placeholder.svg"}
+          alt="Waitlist.Me App"
+          className="h-full w-[500px] text-primary/70 text-glow"
+        />
+      ),
+      technologies: ["React.js", "Redux", "Material UI", "REST API"],
+      responsibilities: [
+        "Fixed bugs and enhanced the UI in collaboration with the design team to ensure a polished and user-friendly experience.",
+        "Developed and integrated new features, such as real-time waitlist updates and text notifications, improving customer communication and satisfaction.",
+        "Enhanced application performance, reducing load times and improving overall responsiveness.",
+      ],
+      liveLink: "https://waitlist.me/",
+      githubLink: null,
+    },
+    {
       title: "Effibuild.co",
       description:
         "An AI platform designed to meet all your coding and construction planning requirements with a variety of services.",
@@ -127,9 +148,8 @@ export default function Projects() {
         <Image
           src={imagePaths.effibuild || "/placeholder.svg"}
           alt="Effibuild Platform"
-          className="h-full w-full text-primary/70 text-glow"
-          width={600}
-          height={400}
+          className="h-full w-[500px] text-primary/70 text-glow"
+
         />
       ),
       technologies: ["React.js", "TypeScript", "Redux", "Material UI", "REST API"],
@@ -143,32 +163,36 @@ export default function Projects() {
       githubLink: null,
     },
     {
-      title: "Waitlist.Me",
+      title: "Pro Wrestling League",
       description:
-        "A web application designed to manage guest reservations and waitlists for restaurants, cafes, and other businesses, streamlining the customer experience and operational efficiency.",
+        "Pro Wrestling League (PWL) is a premier Indian wrestling competition featuring top national and international wrestlers. The platform offers live match streaming, team standings, player profiles, and the latest news updates.",
       icon: (
         <Image
-          src={imagePaths.waitlist || "/placeholder.svg"}
-          alt="Waitlist.Me App"
-          className="h-full w-full text-primary/70 text-glow"
-          width={600}
-          height={400}
+          src={imagePaths.pwl || "/placeholder.svg"}
+          alt="Pro Wrestling League"
+          className="h-full w-[500px] drop-shadow-md"
         />
       ),
-      technologies: ["React.js", "Redux", "Material UI", "REST API"],
+      technologies: ["React.js", "Next.js", "Tailwind CSS",],
       responsibilities: [
-        "Fixed bugs and enhanced the UI in collaboration with the design team to ensure a polished and user-friendly experience.",
-        "Developed and integrated new features, such as real-time waitlist updates and text notifications, improving customer communication and satisfaction.",
-        "Enhanced application performance, reducing load times and improving overall responsiveness.",
+        "Developed a dynamic and responsive web interface to showcase live matches, team standings, and player profiles.",
+        "Implemented responsive design using Tailwind CSS to ensure optimal viewing across devices.",
       ],
-      liveLink: "https://waitlist.me/",
-      githubLink: null,
-    },
+      liveLink: null,
+      githubLink: "https://github.com/vedangp1998/pro-wrestling-league-",
+    }
+    ,
     {
       title: "Project Management Web App",
       description:
         "This web app allows users to create new projects, manage them by adding tasks, and oversee project-related activities efficiently.",
-      icon: <LayoutDashboard className="h-16 w-16 text-accent/70 text-glow" strokeWidth={1.5} />,
+      icon: (
+        <Image
+          src={imagePaths.ProjectManagement || "/placeholder.svg"}
+          alt="Pro Wrestling League"
+          className="h-full w-[500px] drop-shadow-md"
+        />
+      ),
       technologies: ["React.js", "Tailwind CSS", "JavaScript"],
       responsibilities: [
         "Designed and developed a user-friendly interface for project management.",
@@ -176,21 +200,7 @@ export default function Projects() {
         "Created a responsive design for all device sizes.",
       ],
       liveLink: null,
-      githubLink: "https://github.com/vedangp1998",
-    },
-    {
-      title: "Food Ordering Web App",
-      description:
-        "Developing a user-centric food ordering app to streamline the process of browsing, selecting, and ordering meals.",
-      icon: <ShoppingCart className="h-16 w-16 text-tertiary/70 text-glow" strokeWidth={1.5} />,
-      technologies: ["React.js", "Tailwind CSS", "JavaScript"],
-      responsibilities: [
-        "Designed an intuitive user interface for browsing food items.",
-        "Implemented cart functionality and checkout process.",
-        "Ensured responsive design for mobile and desktop users.",
-      ],
-      liveLink: null,
-      githubLink: "https://github.com/vedangp1998",
+      githubLink: "https://github.com/vedangp1998/Project-management-app",
     },
   ]
 
